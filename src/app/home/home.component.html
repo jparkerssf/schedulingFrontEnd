@@ -1,0 +1,100 @@
+<p>
+    Welcome Administrator the Scheduling Application. You may begin by creating new locations or create a new scheduling slot.</p>
+
+<form>
+    <section class="form-block">
+        <label>Add a Time Slot </label>
+        <div class="form-group">
+            <label for="aForm_1">Start Time</label>
+            <input type="text" id="aForm_1" placeholder="Enter the shift start time" size="45" name="startTime" type="time" [(ngModel)]="startTime">
+        </div>
+
+        <div class="form-group">
+            <label for="aForm_1">End Time</label>
+            <input type="text" id="aForm_1" placeholder="Enter the shift end time" size="45" name="endTime" type="time" [(ngModel)]="endTime">
+        </div>
+        <div class="form-group">
+            <label for="aForm_1">Day</label>
+            <input type="text" id="aForm_1" placeholder="Enter the day" size="45" name="day" [(ngModel)]="day" [(ngModel)]="day">
+        </div>
+
+        <div class="form-group">
+            <label for="aForm_1"> Month</label>
+            <input type="text" id="aForm_1" placeholder="Enter the  month" size="45" name="month" type="month" [(ngModel)]="month">
+        </div>
+        <!--<div class="form-group">-->
+        <!--    <label for="aForm_1">Cart Name</label>-->
+        <!--    <input type="text" id="aForm_1" placeholder="Enter the cart name" size="45" name="cartName" [(ngModel)]="cartName">-->
+        <!--</div>-->
+        
+        <div class="form-group">
+            <label for="aForm_1">Cart Name</label>
+            <select>
+                <option *ngFor ="let cart of cartsArray"  [(ngModel)]="locationName" name="cart" [ngValue]="cart" ngDefaultControl>{{cart.cartName}}</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="aForm_1">Location</label>
+            <select>
+                <option *ngFor ="let location of locationsArray"  [(ngModel)]="locationName" name="location" [ngValue]="location" ngDefaultControl>{{location.locationName}}</option>
+            </select>
+        </div>
+        
+        <button type="submit" class="btn btn-primary" (click)="createSlot()"> Create Time Slot</button>
+    </section>
+</form>
+
+
+
+
+<div class="row">
+    <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+        <div class="card" *ngFor="let slot of slotsArray">
+            <div class="card-header">
+                Time Slots
+            </div>
+            <div class="card-block">
+                <div class="card-media-block">
+
+                    <div class="card-media-description">
+                        
+                        <span class="card-media-title">
+                             <strong>Start Time</strong>: {{slot.startTime}}
+                        </span>
+                        
+                        <span class="card-media-text">
+                          <strong>End Time</strong>: {{slot.endTime}}
+                        </span>
+                         <span class="card-media-title">
+                             <strong>Month</strong>: {{slot.month}}
+                        </span>
+                        <span class="card-media-text">
+                            <strong>Location</strong>:{{slot.location}}
+                        </span>
+                        <span class="card-media-text">
+                            <strong> Reserved By</strong>:{{slot.publisher.userName}}
+                        </span>
+                          <span class="card-media-text">
+                            <strong> Cart Name</strong>:{{slot.cartName}}
+                        </span>
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="card-footer">
+                <button class="btn btn-sm btn-link " [ngClass]="{'red-text':slot.booked==true}" *ngIf="slot.booked" [disabled]="true"><em>Booked</em></button>
+                <button class="btn btn-sm btn-link " (click)="bookSlot(slot)" [ngClass]="{'red-text':slot.booked==true}" *ngIf="!slot.booked">Book Slot</button>
+
+                <button class="btn btn-sm btn-link" (click)="publishSlot(slot)" *ngIf="!slot.published">Publish Slot</button>
+                <button class="btn btn-sm btn-link" [ngClass]="{'red-text':slot.published==true}" *ngIf="slot.published"><em>Published</em></button>
+
+                <clr-icon shape="trash" (click)="removeShift(slot.id)"></clr-icon>
+
+            </div>
+        </div>
+    </div>
+    
+    
+    

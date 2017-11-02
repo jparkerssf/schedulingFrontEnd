@@ -1,0 +1,30 @@
+<form>
+    <section class="form-block">
+        <label>Add a Cart</label>
+        <div class="form-group">
+            <label for="aForm_1">Cart Name</label>
+            <input type="text" id="aForm_1" placeholder="Enter a new cart name" size="45" [(ngModel)]="name" name="cartName">
+        </div>
+
+        <button type="submit" class="btn btn-primary" (click)="createCart()">Submit Location</button>
+    </section>
+</form>
+
+
+
+<clr-datagrid>
+    <clr-dg-column [clrDgField]="'name'">Cart Name</clr-dg-column>
+    <clr-dg-column [clrDgField]="'creation'">Remove Cart</clr-dg-column>
+
+
+    <clr-dg-row *clrDgItems="let cart of cartsArray">
+        <clr-dg-cell>{{cart.cartName}}</clr-dg-cell>
+        <clr-dg-cell>
+            <clr-icon shape="trash" (click)="deleteCart(cart)"></clr-icon>
+        </clr-dg-cell>
+        <!--<span class="color-square" [style.backgroundColor]="user.color"></span>-->
+
+    </clr-dg-row>
+
+    <clr-dg-footer>You have <span style="color:red">{{cartsArray.length}}</span> Cart Count</clr-dg-footer>
+</clr-datagrid>

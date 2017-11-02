@@ -1,0 +1,26 @@
+<clr-main-container>
+  <clr-header>
+    <div class="branding">
+      <a href="#" class="nav-link">
+        <clr-icon shape="calendar"></clr-icon>
+        <span class="title">Scheduling Application</span>
+      </a>
+    </div>
+    <div class="header-nav" [clr-nav-level]="1">
+      <a class="nav-link" href="#" [routerLink]="['/dashboard']" routerLinkActive="active"><span class="nav-text">Available Slots</span></a>
+      <a class="nav-link" href="#" [routerLink]="['/create-slot']" routerLinkActive="active"><span class="nav-text">Create New Slots</span></a>
+      <!--<a class="nav-link" href="#" [routerLink]="['/about']" routerLinkActive="active"><span class="nav-text">About</span></a>-->
+      <a class="nav-link" href="#" [routerLink]="['/create']" routerLinkActive="active"><span class="nav-text">Add New Locations </span></a>
+      <a class="nav-link" href="#" [routerLink]="['/add-cart']" routerLinkActive="active"><span class="nav-text">Add New Carts </span></a>
+
+
+    </div>
+    <div class="header-actions">
+    </div>
+  </clr-header>
+  <div class="content-container">
+    <div class="content-area">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</clr-main-container>
